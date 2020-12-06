@@ -53,8 +53,7 @@ public class OutputStreamLogger extends AbstractLogger {
     @Override
     protected void log(Log log) {
         try {
-            output.write(format.format(log).getBytes());
-            output.write('\n');
+            output.write((format.format(log)+ '\n').getBytes());
             output.flush();
         }
         catch (Exception e) {

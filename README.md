@@ -17,6 +17,6 @@ File: <i>pom.xml</i>
 <dependency>
     <groupId>com.github.d-william</groupId>
     <artifactId>commons-log</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.3</version>
 </dependency>
 ```
