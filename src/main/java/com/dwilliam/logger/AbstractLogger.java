@@ -34,7 +34,7 @@ public abstract class AbstractLogger implements Logger {
     protected abstract void log(Log log);
 
     public final void log(LogType type, String message) {
-        if (this.level.isLoggable(type)) log(new Log(System.currentTimeMillis(), type, PID, message, this.application, this.version));
+        if (this.level.isLoggable(type)) log(new Log(System.currentTimeMillis(), type, PID, this.application, this.version, message));
     }
 
 }
