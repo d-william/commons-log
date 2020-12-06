@@ -1,5 +1,6 @@
 package com.dwilliam.logger;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public interface LogLevel {
@@ -17,16 +18,34 @@ public interface LogLevel {
     );
 
     LogLevel ALL = new LogLevelImpl(Integer.MIN_VALUE);
-    LogLevel TRACE = new LogLevelImpl(100);
-    LogLevel VERBOSE = new LogLevelImpl(200);
-    LogLevel DEBUG = new LogLevelImpl(300);
-    LogLevel INFO = new LogLevelImpl(400);
-    LogLevel NOTICE = new LogLevelImpl(500);
-    LogLevel WARNING = new LogLevelImpl(600);
-    LogLevel ERROR = new LogLevelImpl(700);
-    LogLevel FATAL = new LogLevelImpl(800);
-    LogLevel WTF = new LogLevelImpl(900);
+    LogLevel TRACE = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.TRACE));
+    LogLevel VERBOSE = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.VERBOSE));
+    LogLevel DEBUG = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.DEBUG));
+    LogLevel INFO = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.INFO));
+    LogLevel NOTICE = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.NOTICE));
+    LogLevel WARNING = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.WARNING));
+    LogLevel ERROR = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.ERROR));
+    LogLevel FATAL = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.FATAL));
+    LogLevel WTF = new LogLevelImpl(LOG_TYPE_VALUES.get(LogType.WTF));
     LogLevel OFF = new LogLevelImpl(Integer.MAX_VALUE);
+
+    Map<String, LogLevel> LOG_LEVEL_VALUES = new HashMap<>(Map.ofEntries(
+            Map.entry("ALL", ALL),
+            Map.entry("TRACE", TRACE),
+            Map.entry("VERBOSE", VERBOSE),
+            Map.entry("DEBUG", DEBUG),
+            Map.entry("INFO", INFO),
+            Map.entry("NOTICE", NOTICE),
+            Map.entry("WARNING", WARNING),
+            Map.entry("ERROR", ERROR),
+            Map.entry("FATAL", FATAL),
+            Map.entry("WTF", WTF),
+            Map.entry("OFF", OFF)
+    ));
+
+    static LogLevel valueOf(String value) {
+        return LOG_LEVEL_VALUES.get(value);
+    }
 
     boolean isLoggable(LogType type);
 
