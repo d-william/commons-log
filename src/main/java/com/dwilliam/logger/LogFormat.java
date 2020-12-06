@@ -87,21 +87,24 @@ public class LogFormat {
     public final String format(Log log) {
         StringBuilder sb = new StringBuilder();
         for (String str : pattern) switch (str) {
-                case TIMESTAMP_FIELD:
-                    sb.append(dateFormat.format(log.timestamp));
-                    break;
-                case LEVEL_FIELD:
-                    sb.append(log.type);
-                    break;
-                case PID_FIELD:
-                    sb.append(log.pid);
-                    break;
-                case APPLICATION_FIELD:
-                    sb.append(log.application);
-                    break;
-                case MESSAGE_FIELD:
-                    sb.append(log.message);
-                    break;
+            case TIMESTAMP_FIELD:
+                sb.append(dateFormat.format(log.timestamp));
+                break;
+            case LEVEL_FIELD:
+                sb.append(log.type);
+                break;
+            case PID_FIELD:
+                sb.append(log.pid);
+                break;
+            case APPLICATION_FIELD:
+                sb.append(log.application);
+                break;
+            case MESSAGE_FIELD:
+                sb.append(log.message);
+                break;
+            default:
+                sb.append(str);
+                break;
         }
         return sb.toString();
     }
